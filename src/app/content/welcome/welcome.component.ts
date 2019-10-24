@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 @Component({
   selector: 'app-welcome',

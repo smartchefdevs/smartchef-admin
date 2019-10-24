@@ -1,0 +1,33 @@
+<button nz-button nzType="primary">Crear categoría</button>
+<nz-divider nzText="Listado de categorías" nzOrientation="left"></nz-divider>
+<nz-table #basicTable [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of listOfData">
+            <td>{{ data.id }}</td>
+            <td>{{ data.name }}</td>
+            <td>
+                    <button nz-button nz-dropdown [nzDropdownMenu]="menu">Acciones<i nz-icon nzType="down"></i></button>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <ul nz-menu>
+                              <li nz-menu-item>
+                                <a>Editar</a>
+                              </li>
+                              <li nz-menu-item>
+                                <a>Eliminar</a>
+                              </li>
+                              <li nz-menu-item>
+                                <a>Ver</a>
+                              </li>
+                            </ul>
+                          </nz-dropdown-menu>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
