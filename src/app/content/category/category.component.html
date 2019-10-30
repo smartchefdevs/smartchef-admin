@@ -1,4 +1,4 @@
-<button nz-button nzType="primary">Crear categoría</button>
+<button nz-button  (click)="showModalOnCreate()" nzType="primary">Crear categoría</button>
 <nz-divider nzText="Listado de categorías" nzOrientation="left"></nz-divider>
 <nz-table #basicTable [nzData]="listOfData">
         <thead>
@@ -17,10 +17,10 @@
                     <nz-dropdown-menu #menu="nzDropdownMenu">
                             <ul nz-menu>
                               <li nz-menu-item>
-                                <a>Editar</a>
+                                <a (click)="showModalOnEdit(data)">  Editar</a>
                               </li>
                               <li nz-menu-item>
-                                <a>Eliminar</a>
+                                <a (click)="deleteCategory(data.id)">Eliminar</a>
                               </li>
                               <li nz-menu-item>
                                 <a>Ver</a>
@@ -31,3 +31,64 @@
           </tr>
         </tbody>
       </nz-table>
+
+<!-- Modal de creación de categorías -->
+
+<nz-modal
+[(nzVisible)]="isVisibleOnCreate"
+nzTitle="Crear nueva cateogíra"
+(nzOnCancel)="handleCancelOnCreate()"
+(nzOnOk)="handleOkOnCreate()"
+[nzOkLoading]="isOkLoadingOnCreate"
+>
+
+
+<form nz-form  [formGroup]="validateFormOnCreate"  class="login-form" (ngSubmit)="submitFormOnCreate()" >
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="name">
+      Nombre
+    </nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input formControlName="name" name="name" type="text" id="name">
+    </nz-form-control>
+  </nz-form-item >
+</form>
+
+</nz-modal>
+
+<!-- Modal de edición de categorías -->
+
+<nz-modal
+[(nzVisible)]="isVisibleOnEdit"
+nzTitle="Editar categoría"
+(nzOnCancel)="handleCancelOnEdit()"
+(nzOnOk)="handleOkOnEdit()"
+[nzOkLoading]="isOkLoadingOnEdit"
+>
+
+
+<form nz-form  [formGroup]="validateFormOnEdit"  class="login-form" (ngSubmit)="submitFormOnEdit()" >
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="name">
+      Nombre
+    </nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input formControlName="name" name="name" type="text" id="name">
+    </nz-form-control>
+  </nz-form-item >
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="id">
+      Id
+    </nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input formControlName="id" name="id" type="text" id="id">
+    </nz-form-control>
+  </nz-form-item >
+
+  <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+
+</form>
+
+</nz-modal>
+

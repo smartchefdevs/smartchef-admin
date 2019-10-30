@@ -13,4 +13,25 @@ export class CategoryService {
     let folderPath = "/categoryfood/list";
     return this.httpClient.get(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`)
   }
+
+  public createCategory(name:string){
+    let folderPath = "/categoryfood/create";
+    return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`,
+    {
+        name
+    });
+  }
+
+  public deleteCategory(id:number){
+    let folderPath = `categoryfood/delete/${id}`;
+    return this.httpClient.get(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`);
+  }
+
+  public editCategory(id:number, name:string){
+    let folderPath = "categoryfood/update";
+    return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`,{
+      id,name
+    });
+
+  }
 }

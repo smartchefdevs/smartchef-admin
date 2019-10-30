@@ -16,13 +16,16 @@ import { UserComponent } from './user/user.component';
 import { UserService } from '../_services/user.service';
 import { CategoryService } from '../_services/category.service';
 import { CategoryComponent } from './category/category.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ContentComponent, WelcomeComponent, UserComponent, CategoryComponent],
   imports: [
     CommonModule,
     ContentRoutingModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ UserService, CategoryService ]
 })
