@@ -32,5 +32,20 @@
 </nz-table>
 
 <nz-modal [(nzVisible)]="modalNuevo" [nzTitle]="modalTitulo" (nzOnCancel)="cerrarModal()" (nzOnOk)="crearEditarEvento()">
-  
+    <label>Evento</label>
+    <input nz-input [(ngModel)]='eventoCrear.evento' />
+    <label>Chef</label>
+    <nz-select [(ngModel)]="eventoCrear.chef" nzAllowClear [ngStyle]="{'width': '100%'}">
+        <nz-option *ngFor="let chef of listaChefs" [nzValue]="chef.nombre" [nzLabel]="chef.nombre"></nz-option>
+    </nz-select>
+    <label>Ubicación</label>
+    <input nz-input [(ngModel)]='eventoCrear.ubicacion' />
+    <label>Precio</label>
+    <input nz-input [(ngModel)]='eventoCrear.precio' />
+    <label>Disponibilidad</label>
+    <input nz-input [(ngModel)]='eventoCrear.disponibilidad' />
+    <label>Categoria</label>
+    <nz-select [(ngModel)]="eventoCrear.categoria" nzAllowClear [ngStyle]="{'width': '100%'}">
+        <nz-option *ngFor="let categoria of listaCategorias" [nzValue]="categoria.nombre" [nzLabel]="categoria.nombre"></nz-option>
+    </nz-select>
 </nz-modal>
