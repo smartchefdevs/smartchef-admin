@@ -1,4 +1,4 @@
-<button nz-button nzType="primary">Crear Usuario</button>
+<button nz-button nzType="primary" (click)="showModalCreate()">Crear Usuario</button>
 <br>
 <nz-divider nzText="Listado de usuarios" nzOrientation="left"></nz-divider>
 <nz-table #basicTable [nzData]="listOfData">
@@ -23,7 +23,7 @@
                             <a>Editar</a>
                           </li>
                           <li nz-menu-item>
-                            <a>Eliminar</a>
+                            <a (click)="handleDisableUser(data)">Eliminar</a>
                           </li>
                           <li nz-menu-item>
                             <a>Ver</a>
@@ -34,3 +34,17 @@
       </tr>
     </tbody>
   </nz-table>
+
+  <!--
+    MODALES
+  -->
+  <nz-modal
+  [(nzVisible)]="isVisibleModalCreate"
+  nzTitle="Creación de Usuario"
+  (nzOnCancel)="handleCancelModalCreate()"
+  (nzOnOk)="handleOkModalCreate()"
+  [nzOkLoading]="isOkLoadingModalCreate">
+  <p>
+      Contenido de modal
+  </p>
+</nz-modal>

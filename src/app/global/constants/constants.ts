@@ -3,7 +3,7 @@ export class AppSettings {
     /*
     * GENERAL APP Constants - > Do not remove
     */
-    public static API_ENDPOINT='http://ec2-54-211-207-129.compute-1.amazonaws.com';
+    public static API_ENDPOINT='http://ec2-34-207-127-183.compute-1.amazonaws.com';
     public static API_PORT = '8000';
 
     /*

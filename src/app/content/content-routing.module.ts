@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component';
 import { ContentComponent } from './content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CategoryComponent } from './category/category.component';
+import { EventosComponent } from './events/events.component';
 
 const routes: Routes = [
   { path: 'content',
@@ -18,7 +19,11 @@ const routes: Routes = [
    }, {
      path: 'category',
      component: CategoryComponent
-   }]}
+   },
+   {
+    path: 'event',
+    component: EventosComponent
+  }]}
 ];
 
 @NgModule({

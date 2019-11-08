@@ -14,16 +14,18 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NgZorroAntdModule, NZ_I18N, es_ES } from 'ng-zorro-antd';
 import { UserComponent } from './user/user.component';
 import { UserService } from '../_services/user.service';
+import { EventosService } from '../_services/eventos.service';
 import { CategoryService } from '../_services/category.service';
 import { CategoryComponent } from './category/category.component';
+import { EventosComponent } from './events/events.component';
 
 @NgModule({
-  declarations: [ContentComponent, WelcomeComponent, UserComponent, CategoryComponent],
+  declarations: [ContentComponent, WelcomeComponent, UserComponent, CategoryComponent, EventosComponent],
   imports: [
     CommonModule,
     ContentRoutingModule,
     NgZorroAntdModule
   ],
-  providers: [ UserService, CategoryService ]
+  providers: [ UserService, CategoryService, EventosService ]
 })
 export class ContentModule { }

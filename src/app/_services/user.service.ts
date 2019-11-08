@@ -13,4 +13,12 @@ export class UserService {
     let folderPath = "/user/list";
     return this.httpClient.get(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`);
   }
+
+  public disableUser(idUser:number){
+    let folderPath = "user/change/state";
+    return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`, {
+      id: idUser,
+      id_state: 0
+    })
+  }
 }

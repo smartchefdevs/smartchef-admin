@@ -1,0 +1,36 @@
+<button nz-button nzType="primary" (click)="modalNuevo = !modalNuevo">Nuevo</button>
+<div [ngStyle]="{'margin-bottom': '15px'}"></div>
+
+<nz-table #basicTable [nzData]="tempData">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Evento</th>
+            <th>Chef</th>
+            <th>Ubicación</th>
+            <th>Precio</th>
+            <th>Disponibilidad</th>
+            <th>Categoría</th>
+            <th>Operaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of tempData">
+            <td>{{ data.codigo }}</td>
+            <td>{{ data.evento }}</td>
+            <td>{{ data.chef }}</td>
+            <td>{{ data.ubicacion }}</td>
+            <td>{{ data.precio }}</td>
+            <td>{{ data.disponibilidad }}</td>
+            <td>{{ data.categoria }}</td>
+            <td>
+                <button (click)='initEditarEvento(data)' nz-button nzType="secondary" nzShape="circle"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                <button (click)='eliminarEvento(data.codigo)' nz-button nzType="danger" nzShape="circle" [ngStyle]="{'margin-left': '5px'}"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="modalNuevo" [nzTitle]="modalTitulo" (nzOnCancel)="cerrarModal()" (nzOnOk)="crearEditarEvento()">
+  
+</nz-modal>
