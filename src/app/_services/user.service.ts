@@ -14,11 +14,15 @@ export class UserService {
     return this.httpClient.get(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`);
   }
 
-  public disableUser(idUser:number){
-    let folderPath = "user/change/state";
-    return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`, {
-      id: idUser,
-      id_state: 0
-    })
+  public createUser(objectSend: any){
+    let folderPath = "/user/create";
+    return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`, objectSend);
   }
+
+  public deleteUser(objectSend: any){
+    let folderPath = "/user/delete";
+    return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`, objectSend);
+  }
+
+  
 }

@@ -1,8 +1,10 @@
 export class User{
-    id: Number;
-    fullName: String;
+    id: any;
+    id_profile: any;
+    full_name: String;
+    pass: any;
     mail: String;
-
+    address: any;
     constructor(){
         
     }

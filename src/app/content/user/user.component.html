@@ -1,4 +1,4 @@
-<button nz-button nzType="primary" (click)="showModalCreate()">Crear Usuario</button>
+<button nz-button nzType="primary" (click)='abrirForm1()'>Crear Usuario</button>
 <br>
 <nz-divider nzText="Listado de usuarios" nzOrientation="left"></nz-divider>
 <nz-table #basicTable [nzData]="listOfData">
@@ -20,10 +20,10 @@
                 <nz-dropdown-menu #menu="nzDropdownMenu">
                         <ul nz-menu>
                           <li nz-menu-item>
-                            <a>Editar</a>
+                            <a (click)='editar(data)'>Editar</a>
                           </li>
                           <li nz-menu-item>
-                            <a (click)="handleDisableUser(data)">Eliminar</a>
+                            <a>Eliminar</a>
                           </li>
                           <li nz-menu-item>
                             <a>Ver</a>
@@ -35,16 +35,100 @@
     </tbody>
   </nz-table>
 
-  <!--
-    MODALES
-  -->
   <nz-modal
-  [(nzVisible)]="isVisibleModalCreate"
-  nzTitle="Creación de Usuario"
-  (nzOnCancel)="handleCancelModalCreate()"
-  (nzOnOk)="handleOkModalCreate()"
-  [nzOkLoading]="isOkLoadingModalCreate">
-  <p>
-      Contenido de modal
-  </p>
-</nz-modal>
+      [(nzVisible)]="isVisible"
+      nzTitle="Formulario de registro"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()"
+      [nzOkLoading]="isOkLoading"
+    >
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="email">Correo</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+          <input nz-input formControlName="email" id="email"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired>Contaseña</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+          <input
+            nz-input
+            type="password"
+            id="password"
+            formControlName="password"
+            (ngModelChange)="updateConfirmValidator()"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmar Contraseña</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+          <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Porfavor confirmar contraseña!
+            </ng-container>
+            <ng-container *ngIf="control.hasError('confirm')">
+              La segunda contraseña no coinside con la primera!
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="nickname" nzRequired>
+          <span>
+            Nombre de usuario
+            <i
+              nz-icon
+              nz-tooltip
+              nzTitle="Este sera en nombre de pila que saldra en la aplicacion"
+              nzType="question-circle"
+              nzTheme="outline"
+            ></i>
+          </span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Porfavor escriba un nombre de usuario!">
+          <input nz-input id="nickname" formControlName="nickname" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="phoneNumber" nzRequired>Celular</nz-form-label>
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          [nzValidateStatus]="validateForm.controls['phoneNumber']"
+          nzErrorTip="Please input your phone number!"
+        >
+          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+            <ng-template #addOnBeforeTemplate>
+              <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                <nz-option nzLabel="+86" nzValue="+86"></nz-option>
+                <nz-option nzLabel="+57" nzValue="+57"></nz-option>
+                <nz-option nzLabel="+32" nzValue="+32"></nz-option>
+                <nz-option nzLabel="+42" nzValue="+42"></nz-option>
+                <nz-option nzLabel="+21" nzValue="+21"></nz-option>
+                <nz-option nzLabel="+11" nzValue="+11"></nz-option>
+              </nz-select>
+            </ng-template>
+            <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="address" nzRequired>Direccion</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input address!">
+          <input nz-input id="address" formControlName="address" placeholder="address" />
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="11">
+          <button nz-button nzType="primary">Registrar</button>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+
+  </nz-modal>
+
