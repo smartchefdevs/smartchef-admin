@@ -22,7 +22,7 @@
                           <li nz-menu-item>
                             <a (click)='editar(data)'>Editar</a>
                           </li>
-                          <li nz-menu-item>
+                          <li (click)='eliminar(data)' nz-menu-item>
                             <a>Eliminar</a>
                           </li>
                           <li nz-menu-item>
@@ -40,6 +40,7 @@
       nzTitle="Formulario de registro"
       (nzOnCancel)="handleCancel()"
       (nzOnOk)="handleOk()"
+      [nzFooter]="modalFooter"
       [nzOkLoading]="isOkLoading"
     >
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
@@ -129,6 +130,9 @@
       </nz-form-item>
 
     </form>
+
+    <ng-template #modalFooter>
+    </ng-template>
 
   </nz-modal>
 

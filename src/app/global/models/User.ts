@@ -5,6 +5,7 @@ export class User{
     pass: any;
     mail: String;
     address: any;
+    id_state: any;
     constructor(){
         
     }

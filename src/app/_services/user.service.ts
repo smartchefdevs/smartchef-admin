@@ -20,9 +20,13 @@ export class UserService {
   }
 
   public deleteUser(objectSend: any){
-    let folderPath = "/user/delete";
+    let folderPath = "/user/change/state";
     return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`, objectSend);
   }
 
+  public editUser(objectSend: any){
+    let folderPath = "/change/update";
+    return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`, objectSend);
+  }
   
 }
