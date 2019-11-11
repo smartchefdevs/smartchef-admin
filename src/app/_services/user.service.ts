@@ -25,7 +25,7 @@ export class UserService {
   }
 
   public editUser(objectSend: any){
-    let folderPath = "/change/update";
+    let folderPath = "/user/update";
     return this.httpClient.post(`${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/${folderPath}`, objectSend);
   }
   

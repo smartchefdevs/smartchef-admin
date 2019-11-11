@@ -25,7 +25,7 @@
                           <li (click)='eliminar(data)' nz-menu-item>
                             <a>Eliminar</a>
                           </li>
-                          <li nz-menu-item>
+                          <li (click)='detail(data)' nz-menu-item>
                             <a>Ver</a>
                           </li>
                         </ul>
@@ -136,3 +136,22 @@
 
   </nz-modal>
 
+<!-- Modal de detalle del usuario -->
+
+<nz-modal
+[(nzVisible)]="isVisibleDetailUser"
+nzTitle="Detalles de usuario"
+[nzContent]="modalContentDetailUser"
+[nzFooter]="modalFooter"
+>
+
+<ng-template #modalContentDetailUser>
+  <b>Param:</b> param
+  <br>
+  <b>Param3: </b> val
+</ng-template>
+
+<ng-template #modalFooter>
+</ng-template>
+
+</nz-modal>

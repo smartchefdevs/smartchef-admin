@@ -33,10 +33,12 @@
 
 <nz-modal
 [(nzVisible)]="isVisibleOnCreate"
-nzTitle="Crear nueva cateogíra"
+nzTitle="Crear nueva categoría"
 (nzOnCancel)="handleCancelOnCreate()"
 (nzOnOk)="handleOkOnCreate()"
 [nzOkLoading]="isOkLoadingOnCreate"
+[nzFooter]="modalFooter"
+
 >
 
 
@@ -49,7 +51,13 @@ nzTitle="Crear nueva cateogíra"
       <input nz-input formControlName="name" name="name" type="text" id="name">
     </nz-form-control>
   </nz-form-item >
+
+  <button nz-button class="login-form-button" [nzType]="'primary'">Crear</button>
 </form>
+
+<ng-template #modalFooter>
+</ng-template>
+
 
 </nz-modal>
 
@@ -61,6 +69,7 @@ nzTitle="Editar categoría"
 (nzOnCancel)="handleCancelOnEdit()"
 (nzOnOk)="handleOkOnEdit()"
 [nzOkLoading]="isOkLoadingOnEdit"
+[nzFooter]="modalFooter"
 >
 
 
@@ -81,6 +90,9 @@ nzTitle="Editar categoría"
   </nz-form-item >
 
   <button nz-button class="login-form-button" [nzType]="'primary'">Guardar</button>
+
+  <ng-template #modalFooter>
+  </ng-template>
 
 </form>
 

@@ -12,6 +12,7 @@ import { AppSettings } from '../../global/constants/constants';
 export class UserComponent implements OnInit {
 
   validateForm: FormGroup;
+  isVisibleDetailUser;
   listOfData;
   usuario: User;
   constructor(private userService:UserService, 
@@ -87,6 +88,11 @@ export class UserComponent implements OnInit {
       this.notificationHelper.buildNotification(AppSettings.ALERT_ERROR, "Ooops!", "Parece que ha ocurrido algo..");
 
     });
+  }
+
+  detail(obj: any){
+    this.isVisibleDetailUser = true;
+    
   }
 
   getCaptcha(e: MouseEvent): void {
