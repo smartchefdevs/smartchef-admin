@@ -1,9 +1,9 @@
 export class Evento {
-    codigo: number;
-    evento: string;
+    id: number;
+    name: string;
     chef: string;
-    ubicacion: string;
-    precio: string;
-    disponibilidad: string;
-    categoria: string;
+    address: string;
+    price: string;
+    description: string;
+    idState = 1;
 }

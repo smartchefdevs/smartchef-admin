@@ -1,7 +1,7 @@
 <button nz-button nzType="primary" (click)="modalNuevo = !modalNuevo">Nuevo</button>
 <div [ngStyle]="{'margin-bottom': '15px'}"></div>
 
-<nz-table #basicTable [nzData]="tempData">
+<nz-table #basicTable [nzData]="listaEventos">
     <thead>
         <tr>
             <th>Código</th>
@@ -9,23 +9,21 @@
             <th>Chef</th>
             <th>Ubicación</th>
             <th>Precio</th>
-            <th>Disponibilidad</th>
-            <th>Categoría</th>
+            <th>Descripción</th>
             <th>Operaciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of tempData">
-            <td>{{ data.codigo }}</td>
-            <td>{{ data.evento }}</td>
-            <td>{{ data.chef }}</td>
-            <td>{{ data.ubicacion }}</td>
-            <td>{{ data.precio }}</td>
-            <td>{{ data.disponibilidad }}</td>
-            <td>{{ data.categoria }}</td>
+        <tr *ngFor="let evento of listaEventos">
+            <td>{{ evento.id }}</td>
+            <td>{{ evento.name }}</td>
+            <td>{{ evento.chef.full_name }}</td>
+            <td>{{ evento.address }}</td>
+            <td>{{ evento.price }}</td>
+            <td>{{ evento.description }}</td>
             <td>
-                <button (click)='initEditarEvento(data)' nz-button nzType="secondary" nzShape="circle"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
-                <button (click)='eliminarEvento(data.codigo)' nz-button nzType="danger" nzShape="circle" [ngStyle]="{'margin-left': '5px'}"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                <button (click)='initEditarEvento(evento)' nz-button nzType="secondary" nzShape="circle"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                <button (click)='eliminarEvento(evento.id)' nz-button nzType="danger" nzShape="circle" [ngStyle]="{'margin-left': '5px'}"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
             </td>
         </tr>
     </tbody>
@@ -33,19 +31,15 @@
 
 <nz-modal [(nzVisible)]="modalNuevo" [nzTitle]="modalTitulo" (nzOnCancel)="cerrarModal()" (nzOnOk)="crearEditarEvento()">
     <label>Evento</label>
-    <input nz-input [(ngModel)]='eventoCrear.evento' />
+    <input nz-input [(ngModel)]='eventoCrear.name' />
     <label>Chef</label>
     <nz-select [(ngModel)]="eventoCrear.chef" nzAllowClear [ngStyle]="{'width': '100%'}">
-        <nz-option *ngFor="let chef of listaChefs" [nzValue]="chef.nombre" [nzLabel]="chef.nombre"></nz-option>
+        <nz-option *ngFor="let chef of listaChefs" [nzValue]="chef.id" [nzLabel]="chef.full_name"></nz-option>
     </nz-select>
     <label>Ubicación</label>
-    <input nz-input [(ngModel)]='eventoCrear.ubicacion' />
+    <input nz-input [(ngModel)]='eventoCrear.address' />
     <label>Precio</label>
-    <input nz-input [(ngModel)]='eventoCrear.precio' />
-    <label>Disponibilidad</label>
-    <input nz-input [(ngModel)]='eventoCrear.disponibilidad' />
-    <label>Categoria</label>
-    <nz-select [(ngModel)]="eventoCrear.categoria" nzAllowClear [ngStyle]="{'width': '100%'}">
-        <nz-option *ngFor="let categoria of listaCategorias" [nzValue]="categoria.nombre" [nzLabel]="categoria.nombre"></nz-option>
-    </nz-select>
+    <input nz-input [(ngModel)]='eventoCrear.price' />
+    <label>Descripción</label>
+    <input nz-input [(ngModel)]='eventoCrear.description' />
 </nz-modal>

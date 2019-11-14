@@ -6,15 +6,19 @@ import { Routes, RouterModule } from '@angular/router';
  */
 import { AuthComponent} from './auth/auth.component'
 import { ContentComponent } from './content/content.component';
- 
 
-const routes: Routes = [ 
-  { path: 'auth', 
-    component: AuthComponent 
+const routes: Routes = [
+  { path: 'auth',
+    component: AuthComponent
   },
   {
     path: 'content',
     component: ContentComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'auth/'
   }
 ];
 

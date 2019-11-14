@@ -24,7 +24,7 @@ import { NgZorroAntdModule, NZ_I18N, es_ES } from 'ng-zorro-antd';
 
 
 @NgModule({
-  declarations: [ AuthComponent ,LoginComponent],
+  declarations: [ AuthComponent, LoginComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
