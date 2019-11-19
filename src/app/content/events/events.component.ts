@@ -37,13 +37,13 @@ export class EventosComponent implements OnInit {
   crearEditarEvento() {
     if (!this.opcEditar) {
       this.eventoCrear.id = this.listaEventos.length + 1;
-      this.eventosService.crearEvento(this.eventoCrear)
+      this.eventosService.crearEvento(Evento.clone(this.eventoCrear))
       .subscribe(evento => {
           this.listaEventos.push(evento);
           console.log(evento);
         });
     } else {
-      this.eventosService.editarEvento(this.eventoCrear)
+      this.eventosService.editarEvento(Evento.clone(this.eventoCrear))
       .subscribe(evento => {
           this.listaEventos[this.eventoCrear.id - 1] = evento;
           console.log(evento);
@@ -54,7 +54,8 @@ export class EventosComponent implements OnInit {
   }
 
   initEditarEvento(evento: Evento) {
-    this.eventoCrear = evento;
+    this.eventoCrear = new Evento(evento);
+    console.log(this.eventoCrear);
     this.modalTitulo = 'Modificar Evento';
     this.modalNuevo = true;
     this.opcEditar = true;
@@ -64,7 +65,7 @@ export class EventosComponent implements OnInit {
     this.listaEventos.splice(codigo - 1, 1);
     this.eventosService.eliminarEvento(codigo)
       .subscribe(evento => {
-        console.log(evento);
+        // console.log(evento);
       });
   }
 

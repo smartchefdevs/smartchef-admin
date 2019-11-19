@@ -44,7 +44,8 @@ export class EventosService {
 
   editarEvento(evento: Evento): Observable<any> {
     console.log('Service editar evento');
-    return this.http.put(`${this.urlServicio}/update/${evento.codigo}`, evento, { headers: this.httpHeaders }).pipe(
+    console.log(evento);
+    return this.http.put(`${this.urlServicio}/update`, evento, { headers: this.httpHeaders }).pipe(
       catchError(e => {
         console.error(e);
         return throwError(e);
@@ -52,9 +53,9 @@ export class EventosService {
     );
   }
 
-  eliminarEvento(codigo: number): Observable<any> {
+  eliminarEvento(id: number): Observable<any> {
     console.log('Service eliminar evento');
-    return this.http.delete(`${this.urlServicio}/delete/${codigo}`, { headers: this.httpHeaders }).pipe(
+    return this.http.delete(`${this.urlServicio}/delete/${id}`, { headers: this.httpHeaders }).pipe(
       catchError(e => {
         console.error(e);
         return throwError(e);

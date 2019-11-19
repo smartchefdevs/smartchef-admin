@@ -8,6 +8,8 @@
             <th>Evento</th>
             <th>Chef</th>
             <th>Ubicación</th>
+            <th>Longitud</th>
+            <th>Latitud</th>
             <th>Precio</th>
             <th>Descripción</th>
             <th>Operaciones</th>
@@ -19,6 +21,8 @@
             <td>{{ evento.name }}</td>
             <td>{{ evento.chef.full_name }}</td>
             <td>{{ evento.address }}</td>
+            <td>{{ evento.lat_addr }}</td>
+            <td>{{ evento.lon_addr }}</td>
             <td>{{ evento.price }}</td>
             <td>{{ evento.description }}</td>
             <td>
@@ -33,11 +37,15 @@
     <label>Evento</label>
     <input nz-input [(ngModel)]='eventoCrear.name' />
     <label>Chef</label>
-    <nz-select [(ngModel)]="eventoCrear.chef" nzAllowClear [ngStyle]="{'width': '100%'}">
+    <nz-select [(ngModel)]="eventoCrear.idChef" nzAllowClear [ngStyle]="{'width': '100%'}">
         <nz-option *ngFor="let chef of listaChefs" [nzValue]="chef.id" [nzLabel]="chef.full_name"></nz-option>
     </nz-select>
     <label>Ubicación</label>
     <input nz-input [(ngModel)]='eventoCrear.address' />
+    <label>Longitud</label>
+    <input nz-input [(ngModel)]='eventoCrear.latAddr' />
+    <label>Latitud</label>
+    <input nz-input [(ngModel)]='eventoCrear.lonAddr' />
     <label>Precio</label>
     <input nz-input [(ngModel)]='eventoCrear.price' />
     <label>Descripción</label>
