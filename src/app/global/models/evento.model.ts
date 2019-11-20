@@ -27,7 +27,7 @@ export class Evento {
     static clone(row: Evento): Evento {
         const rowCloned = Object.assign({}, row);
         delete rowCloned.chef;
-        delete rowCloned.idChef;
+        delete rowCloned.id;
         return rowCloned;
     }
 }

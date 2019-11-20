@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Evento } from '../global/models/evento.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { AppSettings } from '../global/constants/constants';
 
@@ -11,7 +11,6 @@ import { AppSettings } from '../global/constants/constants';
 export class EventosService {
 
   private urlServicio: string;
-  private httpHeaders = new HttpHeaders({'Content-type': 'application/json'});
 
   constructor(private http: HttpClient) {
     this.urlServicio = `${AppSettings.API_ENDPOINT}:${AppSettings.API_PORT}/event`;
@@ -34,7 +33,7 @@ export class EventosService {
 
   crearEvento(evento: Evento): Observable<any> {
     console.log('Service crear evento');
-    return this.http.post(`${this.urlServicio}/create`, evento, { headers: this.httpHeaders }).pipe(
+    return this.http.post(`${this.urlServicio}/create`, { params: evento }).pipe(
       catchError(e => {
         console.error(e);
         return throwError(e);
@@ -45,7 +44,7 @@ export class EventosService {
   editarEvento(evento: Evento): Observable<any> {
     console.log('Service editar evento');
     console.log(evento);
-    return this.http.put(`${this.urlServicio}/update`, evento, { headers: this.httpHeaders }).pipe(
+    return this.http.put(`${this.urlServicio}/update`, { params: evento }).pipe(
       catchError(e => {
         console.error(e);
         return throwError(e);
@@ -55,7 +54,7 @@ export class EventosService {
 
   eliminarEvento(id: number): Observable<any> {
     console.log('Service eliminar evento');
-    return this.http.delete(`${this.urlServicio}/delete/${id}`, { headers: this.httpHeaders }).pipe(
+    return this.http.delete(`${this.urlServicio}/delete/${id}`).pipe(
       catchError(e => {
         console.error(e);
         return throwError(e);

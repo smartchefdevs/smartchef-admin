@@ -35,19 +35,19 @@
 
 <nz-modal [(nzVisible)]="modalNuevo" [nzTitle]="modalTitulo" (nzOnCancel)="cerrarModal()" (nzOnOk)="crearEditarEvento()">
     <label>Evento</label>
-    <input nz-input [(ngModel)]='eventoCrear.name' />
+    <input nz-input type="text" [(ngModel)]='eventoCrear.name' />
     <label>Chef</label>
     <nz-select [(ngModel)]="eventoCrear.idChef" nzAllowClear [ngStyle]="{'width': '100%'}">
         <nz-option *ngFor="let chef of listaChefs" [nzValue]="chef.id" [nzLabel]="chef.full_name"></nz-option>
     </nz-select>
     <label>Ubicación</label>
-    <input nz-input [(ngModel)]='eventoCrear.address' />
+    <input nz-input type="text" [(ngModel)]='eventoCrear.address' />
     <label>Longitud</label>
-    <input nz-input [(ngModel)]='eventoCrear.latAddr' />
+    <input nz-input type="number" [(ngModel)]='eventoCrear.latAddr' />
     <label>Latitud</label>
-    <input nz-input [(ngModel)]='eventoCrear.lonAddr' />
+    <input nz-input type="number" [(ngModel)]='eventoCrear.lonAddr' />
     <label>Precio</label>
-    <input nz-input [(ngModel)]='eventoCrear.price' />
+    <input nz-input type="number" [(ngModel)]='eventoCrear.price' />
     <label>Descripción</label>
-    <input nz-input [(ngModel)]='eventoCrear.description' />
+    <input nz-input type="text" [(ngModel)]='eventoCrear.description' />
 </nz-modal>

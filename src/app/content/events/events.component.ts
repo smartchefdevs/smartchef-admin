@@ -38,7 +38,7 @@ export class EventosComponent implements OnInit {
     if (!this.opcEditar) {
       this.eventoCrear.id = this.listaEventos.length + 1;
       this.eventosService.crearEvento(Evento.clone(this.eventoCrear))
-      .subscribe(evento => {
+        .subscribe(evento => {
           this.listaEventos.push(evento);
           console.log(evento);
         });
