@@ -33,7 +33,21 @@ export class EventosService {
 
   crearEvento(evento: Evento): Observable<any> {
     console.log('Service crear evento');
-    return this.http.post(`${this.urlServicio}/create`, { params: evento }).pipe(
+
+    const paramsEvento: any = {
+      name: evento.name,
+      description: evento.description,
+      price: evento.price,
+      lat_addr: evento.latAddr,
+      lon_addr: evento.lonAddr,
+      address: evento.address,
+      id_chef: 15,
+      id_state: evento.idState,
+    };
+
+    console.log(paramsEvento);
+
+    return this.http.post(`${this.urlServicio}/create`, { params: paramsEvento }).pipe(
       catchError(e => {
         console.error(e);
         return throwError(e);
