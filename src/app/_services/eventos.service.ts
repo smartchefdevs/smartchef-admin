@@ -41,7 +41,7 @@ export class EventosService {
       lat_addr: evento.latAddr,
       lon_addr: evento.lonAddr,
       address: evento.address,
-      id_chef: 15,
+      id_chef: evento.idChef,
       id_state: evento.idState,
     };
 
@@ -57,8 +57,20 @@ export class EventosService {
 
   editarEvento(evento: Evento): Observable<any> {
     console.log('Service editar evento');
+
+    const paramsEvento: any = {
+      name: evento.name,
+      description: evento.description,
+      price: evento.price,
+      lat_addr: evento.latAddr,
+      lon_addr: evento.lonAddr,
+      address: evento.address,
+      id_chef: evento.idChef,
+      id_state: evento.idState,
+    };
+
     console.log(evento);
-    return this.http.put(`${this.urlServicio}/update`, { params: evento }).pipe(
+    return this.http.put(`${this.urlServicio}/update`, { params: paramsEvento }).pipe(
       catchError(e => {
         console.error(e);
         return throwError(e);
